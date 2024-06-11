@@ -8,6 +8,7 @@ const PUBLIC_URL = process.env.PUBLIC_URL;
 
 export const createItem = async (req, res) => {
   const { file, user } = matchedData(req);
+  console.log({ file, user });
   if (!user) return res.status(403).json({ message: "You must be authenticated" });
   if (!file) return res.status(500).json({ message: "File not found" });
   const fileData = {

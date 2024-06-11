@@ -48,6 +48,7 @@ export const checkToken = async (req, res) => {
   try {
     const token = req.headers.authorization.split(" ").pop();
     const dataToken = await tokenVerify(token);
+    console.log({ dataToken });
     if (!dataToken) return res.status(403).json({ message: "invalid or expired token" });
     return res.status(200).json(dataToken);
   } catch (error) {

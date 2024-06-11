@@ -6,13 +6,14 @@ export const validatorCreateTournament = [
   check("description").exists().notEmpty(),
   check("rounds").exists().notEmpty(),
   check("club").exists().notEmpty(),
-  check("styleTournament").exists().notEmpty(),
-  check("teamsTournament").exists().notEmpty().isBoolean(),
+  check("styleTournament").optional(),
+  check("teamsTournament").optional().isBoolean(),
   check("teams").optional(),
   check("styleGame").exists().notEmpty(),
-  check("location").exists().notEmpty(),
+  check("location").optional().notEmpty(),
   check("arbiter").exists().notEmpty(),
-  check("dateRounds").exists().notEmpty().isArray(),
+  check("dateRounds").optional().isArray(),
+  check("user").exists().notEmpty().isObject(),
   (req, res, next) => {
     return validateResults(req, res, next);
   },

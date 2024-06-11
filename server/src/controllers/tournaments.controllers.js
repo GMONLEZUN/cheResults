@@ -27,10 +27,11 @@ export const getTournamentDetail = async (req, res) => {
 
 export const createTournament = async (req, res) => {
   try {
-    const { title, rounds, club, styleTournament, teamsTournament, teams, styleGame, location, arbiter, dateRounds } = matchedData(req);
+    const { title, description, rounds, club, styleTournament, teamsTournament, teams, styleGame, location, arbiter, dateRounds, user } = matchedData(req);
     const newTournament = {
       title,
       rounds,
+      description,
       club,
       styleTournament,
       teamsTournament,
@@ -39,6 +40,7 @@ export const createTournament = async (req, res) => {
       location,
       arbiter,
       dateRounds,
+      owner: user.email,
     };
     const response = await TournamentsModel.create(newTournament);
     return res.status(201).json({ message: `Created successfully the tournament with id: ${response._id}`, response });

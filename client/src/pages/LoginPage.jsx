@@ -21,6 +21,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await login(values);
+      console.log(response);
       if (response?.status === 200) {
         if (!response?.data?.data?.user?.validated) {
           setError(true);
@@ -33,7 +34,7 @@ const LoginPage = () => {
         localStorage.setItem("token", response.data.data.token);
         localStorage.setItem("user", JSON.stringify(response.data.data.user));
         if (path === null || path === "" || path === "/login") {
-          navigate("/players");
+          navigate("/");
         } else {
           navigate(path);
         }
@@ -79,7 +80,7 @@ const LoginPage = () => {
                 required
                 value={values.password}
                 onChange={handleValues}
-                name="passowrd"
+                name="password"
               />
             </div>
 
