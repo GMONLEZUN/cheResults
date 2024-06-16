@@ -9,7 +9,7 @@ const HomePage = () => {
   return (
     <Layout>
       <div className="px-32">
-        <h2 className="pt-16 pb-5 font-bold text-2xl">Últimas actualizaciones</h2>
+        <h2 className="pt-24 pb-5 font-bold text-2xl">Últimas actualizaciones</h2>
         <TournamentsListContainer tournaments={tournaments} />
       </div>
     </Layout>

@@ -31,15 +31,12 @@ export const getPlayerById = async (req, res) => {
 
 export const createPlayer = async (req, res) => {
   try {
-    const { name, lastname, elo_rating, nac_rating, federation, fide_code, nac_code } = matchedData(req);
+    const { name, lastname, federation, nat_rating } = matchedData(req);
     const newPlayer = {
       name: name.toLowerCase().trim(),
       lastname: lastname.toLowerCase().trim(),
-      elo_rating,
-      nac_rating,
       federation,
-      fide_code,
-      nac_code,
+      nat_rating,
     };
     const response = await PlayersModel.create(newPlayer);
     return res.status(200).json({ message: "Created successfully", response });

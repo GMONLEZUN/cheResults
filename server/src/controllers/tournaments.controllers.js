@@ -1,5 +1,7 @@
 import { matchedData } from "express-validator";
 import { TournamentsModel } from "../models/tournaments.models.js";
+import { PlayersModel } from "../models/players.models.js";
+import { createPlayer } from "./players.controllers.js";
 
 export const getAllTournaments = async (req, res) => {
   try {
@@ -89,15 +91,19 @@ export const deleteTournament = async (req, res) => {
 
 export const addTournamentPlayers = async (req, res) => {
   try {
-    const { id, players } = matchedData(req);
+    const { id, player } = matchedData(req);
+    console.log(player);
     const tournament = await TournamentsModel.findById(id);
     if (!tournament) return res.status(404).json({ message: "No such tournament" });
-    const updatePlayers = [...tournament.players, ...players];
-    console.log({ players });
-    console.log({ updatePlayers });
-    const response = await TournamentsModel.findByIdAndUpdate(id, { players: updatePlayers });
-    const updatedTournament = await TournamentsModel.findById(id);
-    return res.status(200).json({ message: `Updated tournament id: ${response._id}`, old: response, new: updatedTournament });
+    const newPlayer = {
+      federation: player.federation,
+      name: player.name.toLowerCase().trim(),
+      lastname: player.lastname.toLowerCase().trim(),
+      nat_rating: player.nat_rating,
+    };
+    const responsePlayer = await PlayersModel.create(newPlayer);
+    const response = await TournamentsModel.findByIdAndUpdate(id, { $push: { players: { player: responsePlayer._id } } }, { new: true });
+    return res.status(200).json({ message: `Updated tournament id: ${response._id}`, response });
   } catch (error) {
     console.log(error);
   }

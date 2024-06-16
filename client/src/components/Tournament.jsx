@@ -50,7 +50,9 @@ const Tournament = ({ tournament }) => {
                   <FaTrashAlt className="cursor-pointer text-red-800" onClick={handleDelete} />
                 </>
               ) : null}
-              <FaChevronCircleRight className="cursor-pointer text-stone-800" />
+              <Link to={`/tournaments/${tournament._id}`}>
+                <FaChevronCircleRight className="cursor-pointer text-stone-800" />
+              </Link>
             </div>
           </td>
         </tr>

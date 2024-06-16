@@ -15,7 +15,7 @@ const playerSchema = new Schema(
       type: Number,
       default: 0,
     },
-    nac_rating: {
+    nat_rating: {
       type: Number,
       default: 0,
     },
@@ -24,20 +24,17 @@ const playerSchema = new Schema(
     },
     fide_code: {
       type: String,
-      unique: true,
+      default: 0,
     },
     national_code: {
       type: String,
-      unique: true,
+      default: 0,
     },
   },
   {
     timestamps: true,
   }
 );
-
-playerSchema.path("fide_code").unique({ unique: true, sparse: true });
-playerSchema.path("national_code").unique({ unique: true, sparse: true });
 
 const playersCollection = "players";
 

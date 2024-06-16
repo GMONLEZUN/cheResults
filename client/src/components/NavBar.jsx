@@ -38,8 +38,12 @@ const NavBar = () => {
             </button>
 
             {/* <!-- Dropdown menu --> */}
-            <div id="dropdownHover" className={`z-10 ${!dropdownDisplay ? "hidden" : "absolute"} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mt-2 right-0`}>
-              <ul className="py-2 text-sm text-gray-700 " aria-labelledby="dropdownHoverButton">
+            <div
+              id="dropdownHover"
+              className={`z-50 ${!dropdownDisplay ? "hidden" : "absolute"} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 mt-2 right-0`}
+              style={{ zIndex: "50 !important" }}
+            >
+              <ul className="py-2 text-sm text-gray-700 relative z-50 " aria-labelledby="dropdownHoverButton">
                 <li>
                   <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                     Perfil

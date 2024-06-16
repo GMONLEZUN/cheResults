@@ -52,7 +52,7 @@ export const validatorUpdateTournament = [
 
 export const validatorAddPlayersTournament = [
   check("id").exists().notEmpty().isMongoId(),
-  check("players").exists().notEmpty().isArray().isLength({
+  check("player").exists().notEmpty().isObject().isLength({
     min: 1,
   }),
   (req, res, next) => {

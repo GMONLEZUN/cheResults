@@ -10,6 +10,7 @@ import "./App.css";
 import { TournamentsProvider } from "./context/TournamentsContext";
 import CreateTournament from "./pages/CreateTournament";
 import { Toaster } from "react-hot-toast";
+import TournamentDetailPage from "./pages/TournamentDetailPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/tournaments/:id" element={<TournamentDetailPage />} />
               <Route element={<ProtectedRoute />}>
                 <Route path="/players" element={<PlayersPage />} />
                 <Route path="/tournaments" element={<TournamentsPage />} />

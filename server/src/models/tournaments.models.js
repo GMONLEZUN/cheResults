@@ -100,6 +100,13 @@ const tournamentSchema = new Schema(
   }
 );
 
+tournamentSchema.pre("findOne", function () {
+  this.populate("players.player");
+});
+tournamentSchema.pre("find", function () {
+  this.populate("players.player");
+});
+
 const tournamentsCollection = "tournaments";
 
 export const TournamentsModel = mongoose.model(tournamentsCollection, tournamentSchema);
